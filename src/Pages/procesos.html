@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRHH CESDE - Procesos</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <h1>&#127970; SELECCIÓN RRHH CESDE</h1>
+        <span>Sistema de Gestión de Talento Humano</span>
+    </header>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="vacantes.html">Vacantes</a>
+        <a href="aspirantes.html">Aspirantes</a>
+        <a href="procesos.html" class="activo">Procesos</a>
+    </nav>
+
+    <main>
+
+        <!-- =====================================================
+             FORMULARIO DE PROCESO DE SELECCIÓN
+             Aquí relacionamos un aspirante con una vacante.
+             ===================================================== -->
+        <div class="seccion">
+            <h2>Registrar Proceso de Selección</h2>
+
+            <!--
+                AVISO para el usuario: los <select> de vacantes y aspirantes
+                se llenan automáticamente con los datos ya guardados.
+                Si están vacíos, hay que registrar vacantes y aspirantes primero.
+            -->
+            <p style="color: #888; font-size: 13px; margin-bottom: 16px;">
+                &#9432; Los selectores de abajo se llenan automáticamente con las vacantes y
+                aspirantes que ya registraste. Si aparecen vacíos, ve primero a esas secciones.
+            </p>
+
+            <div id="mensaje" class="mensaje"></div>
+
+            <div class="formulario">
+
+                <!-- Campo 1: Selector de vacante -->
+                <div class="campo">
+                    <label for="selectVacante">Vacante *</label>
+                    <!--
+                        Este <select> se llena dinámicamente con JS.
+                        La función cargarSelectVacantes() en procesos.js
+                        agrega las <option> al cargar la página.
+                    -->
+                    <select id="selectVacante">
+                        <option value="">-- Selecciona una vacante --</option>
+                    </select>
+                </div>
+
+                <!-- Campo 2: Selector de aspirante -->
+                <div class="campo">
+                    <label for="selectAspirante">Aspirante *</label>
+                    <select id="selectAspirante">
+                        <option value="">-- Selecciona un aspirante --</option>
+                    </select>
+                </div>
+
+                <!-- Campo 3: Etapa del proceso -->
+                <div class="campo">
+                    <label for="etapa">Etapa del Proceso</label>
+                    <!--
+                        Las etapas representan las fases de un proceso de selección:
+                        1. Convocatoria  → salió el aviso, el aspirante aplicó
+                        2. Preselección  → revisión de hojas de vida
+                        3. Entrevista    → cita presencial o virtual
+                        4. Prueba        → prueba técnica o psicotécnica
+                        5. Seleccionado  → candidato elegido
+                        6. Rechazado     → no continuó en el proceso
+                    -->
+                    <select id="etapa">
+                        <option value="convocatoria">Convocatoria</option>
+                        <option value="preseleccion">Preselección</option>
+                        <option value="entrevista">Entrevista</option>
+                        <option value="prueba">Prueba Técnica</option>
+                        <option value="seleccionado">Seleccionado</option>
+                        <option value="rechazado">Rechazado</option>
+                    </select>
+                </div>
+
+                <!-- Espacio vacío para mantener el grid de 2 columnas alineado -->
+                <div class="campo"></div>
+
+                <!-- Campo 4: Observaciones (campo libre, ocupa 2 columnas) -->
+                <div class="campo completo">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea
+                        id="observaciones"
+                        placeholder="Notas adicionales: horario de entrevista, resultado de prueba, etc."></textarea>
+                </div>
+
+                <!-- Botones -->
+                <div class="acciones-formulario">
+                    <button class="btn btn-primario" onclick="registrarProceso()">
+                        &#128190; Guardar Proceso
+                    </button>
+                    <button class="btn" style="background-color: #95a5a6; color: white;"
+                            onclick="limpiarFormulario()">
+                        Limpiar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- =====================================================
+             TABLA DE PROCESOS
+             Muestra todos los procesos registrados.
+             La columna "Cambiar Etapa" tiene un <select> para
+             actualizar la etapa directamente desde la tabla.
+             ===================================================== -->
+        <div class="seccion">
+            <h2>Procesos de Selección Registrados</h2>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vacante</th>
+                            <th>Aspirante</th>
+                            <th>Etapa Actual</th>
+                            <th>Cambiar Etapa</th>
+                            <th>Observaciones</th>
+                            <th>Fecha Inicio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-procesos">
+                        <!-- procesos.js llena este <tbody> dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>CESDE &copy; 2024 &mdash; Sistema de Selección RRHH</p>
+    </footer>
+
+    <!--
+        Orden de carga de scripts:
+        1. almacenamiento.js → funciones de localStorage (base de todo)
+        2. procesos.js       → usa las funciones del archivo anterior
+    -->
+    <script src="js/almacenamiento.js"></script>
+    <script src="js/procesos.js"></script>
+
+</body>
+</html>

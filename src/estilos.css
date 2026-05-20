@@ -1,0 +1,805 @@
+/* ============================================================
+   ESTILOS.CSS  —  SELECCIÓN RRHH CESDE
+   Paleta de colores:
+     Azul oscuro  #2c3e50  → encabezado, títulos
+     Azul medio   #3498db  → botón principal, borde activo
+     Verde        #27ae60  → botón éxito, badge activa
+     Rojo         #e74c3c  → botón eliminar, badge rechazado
+     Fondo        #f5f6fa  → fondo general
+   ============================================================ */
+
+/* ---- RESET BÁSICO ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* el padding NO aumenta el tamaño del elemento */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f6fa;
+    color: #333;
+}
+
+/* ============================================================
+   ENCABEZADO  (barra superior)
+   ============================================================ */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+
+header span {
+    font-size: 13px;
+    color: #bdc3c7;
+}
+
+/* ============================================================
+   NAVEGACIÓN  (menú de enlaces)
+   ============================================================ */
+nav {
+    background-color: #34495e;
+    display: flex;
+    gap: 4px;
+    padding: 0 30px;
+}
+
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;   /* quita el subrayado */
+    padding: 12px 18px;
+    font-size: 14px;
+    display: block;
+    transition: background-color 0.2s; /* animación suave al pasar el mouse */
+}
+
+/* Estado activo (página actual) y hover */
+nav a:hover,
+nav a.activo {
+    background-color: #3498db;
+}
+
+/* ============================================================
+   CONTENIDO PRINCIPAL
+   ============================================================ */
+main {
+    max-width: 1100px;
+    margin: 30px auto;   /* centrado horizontal con espacio arriba/abajo */
+    padding: 0 20px;
+}
+
+/* ============================================================
+   TARJETAS RESUMEN  (dashboard de contadores)
+   ============================================================ */
+.tarjetas-resumen {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;     /* si no caben, bajan a la siguiente línea */
+    margin-bottom: 30px;
+}
+
+.tarjeta {
+    background: white;
+    border-radius: 8px;
+    padding: 25px 30px;
+    flex: 1;
+    min-width: 200px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    border-top: 4px solid #3498db; /* borde de color en la parte superior */
+}
+
+.tarjeta h3 {
+    font-size: 13px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+/* El número grande en cada tarjeta */
+.tarjeta .numero {
+    font-size: 48px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Variantes de color para el borde superior de cada tarjeta */
+.tarjeta.azul    { border-top-color: #3498db; }
+.tarjeta.verde   { border-top-color: #27ae60; }
+.tarjeta.naranja { border-top-color: #e67e22; }
+
+/* ============================================================
+   SECCIONES  (cajas blancas con sombra)
+   ============================================================ */
+.seccion {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.seccion h2 {
+    font-size: 17px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+}
+
+/* ============================================================
+   FORMULARIOS
+   ============================================================ */
+
+/* Grid de 2 columnas para los campos */
+.formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Un campo individual (label + input) */
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Campo que ocupa las 2 columnas del grid */
+.campo.completo {
+    grid-column: 1 / -1;
+}
+
+.campo label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilos compartidos para todos los campos de entrada */
+.campo input,
+.campo select,
+.campo textarea {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    transition: border-color 0.2s;
+}
+
+/* Resaltado al hacer click en un campo */
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.campo textarea {
+    resize: vertical;   /* solo se puede redimensionar hacia abajo */
+    min-height: 85px;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+/* Botón principal (azul) */
+.btn-primario {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Botón de peligro: eliminar (rojo, más pequeño) */
+.btn-peligro {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Botón de éxito (verde) */
+.btn-exito {
+    background-color: #27ae60;
+    color: white;
+}
+
+/* Contenedor de botones al final del formulario */
+.acciones-formulario {
+    grid-column: 1 / -1;   /* ocupa ambas columnas del grid */
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* ============================================================
+   MENSAJES DE RETROALIMENTACIÓN
+   ============================================================ */
+.mensaje {
+    padding: 12px 16px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    display: none;  /* oculto por defecto */
+}
+
+/* Se muestran añadiendo la clase correspondiente desde JS */
+.mensaje.exito {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.mensaje.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+/* ============================================================
+   TABLA DE DATOS
+   ============================================================ */
+.tabla-contenedor {
+    overflow-x: auto;   /* scroll horizontal si la tabla es muy ancha */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;  /* elimina el espacio entre celdas */
+    font-size: 14px;
+}
+
+/* Encabezado de la tabla */
+table th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Celdas normales */
+table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+/* Fila resaltada al pasar el mouse */
+table tr:hover {
+    background-color: #f0f5fb;
+}
+
+/* Última fila sin línea inferior */
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Select pequeño dentro de la tabla (para cambiar etapa) */
+table select {
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* ============================================================
+   BADGES  (etiquetas de estado de colores)
+   ============================================================ */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Estados de vacante */
+.badge-activa  { background-color: #d4edda; color: #155724; }
+.badge-cerrada { background-color: #f8d7da; color: #721c24; }
+
+/* Etapas del proceso de selección */
+.badge-convocatoria { background-color: #cce5ff; color: #004085; }
+.badge-preseleccion { background-color: #fff3cd; color: #856404; }
+.badge-entrevista   { background-color: #d1ecf1; color: #0c5460; }
+.badge-prueba       { background-color: #e2d9f3; color: #3d1a78; }
+.badge-seleccionado { background-color: #d4edda; color: #155724; }
+.badge-rechazado    { background-color: #f8d7da; color: #721c24; }
+
+/* ============================================================
+   MENSAJE CUANDO LA TABLA ESTÁ VACÍA
+   ============================================================ */
+.sin-datos {
+    text-align: center;
+    color: #aaa;
+    padding: 35px;
+    font-style: italic;
+}
+
+/* ============================================================
+   PIE DE PÁGINA
+   ============================================================ */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* ============================================================
+    LOGIN
+
+*/
+
+
+.cesde-login-bg {
+    min-height: 100vh;
+    background-color: #f5f6fa;
+    display: flex;
+    flex-direction: column;
+}
+ 
+/* ── Encabezado institucional ── */
+.cesde-header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ 
+.cesde-header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+ 
+.cesde-header span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #bdc3c7;
+}
+ 
+/* ── Barra de acento bajo el encabezado ── */
+.cesde-nav-bar {
+    background-color: #34495e;
+    height: 8px;
+}
+ 
+/* ── Tarjeta de login ── */
+.cesde-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+    border-top: 5px solid #3498db;
+    padding: 40px 38px 32px;
+    width: 100%;
+    max-width: 440px;
+    font-family: 'DM Sans', sans-serif;
+}
+ 
+.cesde-card h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+ 
+.cesde-subtitle {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 28px;
+}
+ 
+/* ── Labels ── */
+.cesde-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+ 
+/* ── Inputs ── */
+.cesde-input {
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 14px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    padding: 10px 12px !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+ 
+.cesde-input:focus {
+    border-color: #3498db !important;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15) !important;
+    outline: none !important;
+}
+ 
+/* Quita el icono de validación nativo de Bootstrap */
+.cesde-input.is-invalid {
+    border-color: #e74c3c !important;
+    background-image: none !important;
+}
+ 
+/* ── Mensajes de error de campo ── */
+.cesde-field-error {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+}
+ 
+/* ── Alertas de servidor ── */
+.cesde-alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+ 
+.cesde-alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+ 
+/* ── Botón principal ── */
+.cesde-btn-primary {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 11px 22px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    letter-spacing: 0.3px;
+}
+ 
+.cesde-btn-primary:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+ 
+.cesde-btn-primary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+ 
+/* ── Divisor ── */
+.cesde-divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 24px 0 18px;
+}
+ 
+/* ── Enlace de registro ── */
+.cesde-register-link {
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    margin-top: 22px;
+}
+ 
+.cesde-register-link button {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+ 
+.cesde-register-link button:hover {
+    color: #2980b9;
+}
+ 
+
+
+
+/* ============================================================
+   FILTROS Y BÚSQUEDA EN TABLA
+   ============================================================ */
+.filtros-tabla {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filtro-busqueda {
+    flex: 1;
+    min-width: 250px;
+}
+
+.input-filtro {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.input-filtro:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.filtro-etapa {
+    min-width: 200px;
+}
+
+.select-filtro {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.select-filtro:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.contador-resultados {
+    padding: 8px 12px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #666;
+    white-space: nowrap;
+}
+
+/* ============================================================
+   BOTONES ADICIONALES
+   ============================================================ */
+.btn-info {
+    background-color: #3498db;
+    color: white;
+    padding: 6px 12px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-right: 5px;
+}
+
+.btn-info:hover {
+    opacity: 0.85;
+}
+
+.btn-crear {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 22px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.btn-crear:hover {
+    opacity: 0.85;
+}
+
+.btn-limpiar {
+    background-color: #95a5a6;
+    color: white;
+    padding: 10px 22px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.btn-limpiar:hover {
+    opacity: 0.85;
+}
+
+/* ============================================================
+   MODAL DE DETALLES
+   ============================================================ */
+.detalle-proceso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-detalle {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.btn-cerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.btn-cerrar:hover {
+    color: #333;
+}
+
+.modal-detalle h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+}
+
+.info-detalle {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-detalle p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.info-detalle strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.observaciones-detalle {
+    background-color: #f5f6fa;
+    padding: 12px;
+    border-radius: 5px;
+    border-left: 3px solid #3498db;
+    line-height: 1.6;
+    color: #555;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.select-etapa {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* ============================================================
+   RESPONSIVE: ajuste para pantallas pequeñas
+   ============================================================ */
+@media (max-width: 620px) {
+    /* En móvil, el formulario pasa a 1 sola columna */
+    .formulario {
+        grid-template-columns: 1fr;
+    }
+
+    /* Las tarjetas del dashboard se apilan */
+    .tarjetas-resumen {
+        flex-direction: column;
+    }
+
+    /* El menú se envuelve */
+    nav {
+        flex-wrap: wrap;
+        padding: 0 10px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
+}
+
+/* ── Responsive: pantallas pequeñas ── */
+@media (max-width: 480px) {
+    .cesde-header {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
+ 
+    .cesde-card {
+        padding: 30px 22px 24px;
+    }
+}

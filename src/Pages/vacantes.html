@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRHH CESDE - Vacantes</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <h1>&#127970; SELECCIÓN RRHH CESDE</h1>
+        <span>Sistema de Gestión de Talento Humano</span>
+    </header>
+
+    <!-- NAVEGACIÓN  (activo = esta página) -->
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="vacantes.html" class="activo">Vacantes</a>
+        <a href="aspirantes.html">Aspirantes</a>
+        <a href="procesos.html">Procesos</a>
+    </nav>
+
+    <main>
+
+        <!-- =====================================================
+             FORMULARIO DE REGISTRO DE VACANTE
+             ===================================================== -->
+        <div class="seccion">
+            <h2>Registrar Nueva Vacante</h2>
+
+            <!-- Aquí aparece el mensaje de éxito o error -->
+            <!-- Su visibilidad la controla vacantes.js cambiando la clase CSS -->
+            <div id="mensaje" class="mensaje"></div>
+
+            <!--
+                FORMULARIO: No usamos la etiqueta <form> con action,
+                porque nosotros manejamos el envío manualmente con JS.
+                Cada campo tiene un 'id' único que JS usa para leer su valor.
+            -->
+            <div class="formulario">
+
+                <!-- Campo 1: Título del cargo (obligatorio) -->
+                <div class="campo">
+                    <label for="titulo">Título del Cargo *</label>
+                    <input
+                        type="text"
+                        id="titulo"
+                        placeholder="Ej: Analista de Sistemas"
+                        maxlength="100">
+                </div>
+
+                <!-- Campo 2: Departamento (obligatorio) -->
+                <div class="campo">
+                    <label for="departamento">Departamento *</label>
+                    <input
+                        type="text"
+                        id="departamento"
+                        placeholder="Ej: Tecnología"
+                        maxlength="80">
+                </div>
+
+                <!-- Campo 3: Descripción (opcional, ocupa 2 columnas) -->
+                <div class="campo completo">
+                    <label for="descripcion">Descripción del Cargo</label>
+                    <textarea
+                        id="descripcion"
+                        placeholder="Describe las funciones, requisitos y condiciones del cargo..."></textarea>
+                </div>
+
+                <!-- Campo 4: Estado -->
+                <div class="campo">
+                    <label for="estado">Estado de la Vacante</label>
+                    <!--
+                        <select> = lista desplegable.
+                        El atributo 'value' de cada <option> es lo que
+                        JS leerá. El texto entre las etiquetas es lo que
+                        el usuario ve.
+                    -->
+                    <select id="estado">
+                        <option value="activa">Activa</option>
+                        <option value="cerrada">Cerrada</option>
+                    </select>
+                </div>
+
+                <!-- Botones de acción (ocupan 2 columnas gracias a .acciones-formulario) -->
+                <div class="acciones-formulario">
+                    <!--
+                        onclick="registrarVacante()" → llama a la función
+                        que está definida en vacantes.js cuando se hace clic
+                    -->
+                    <button class="btn btn-primario" onclick="registrarVacante()">
+                        &#128190; Guardar Vacante
+                    </button>
+                    <button class="btn" style="background-color: #95a5a6; color: white;"
+                            onclick="limpiarFormulario()">
+                        Limpiar
+                    </button>
+                </div>
+
+            </div><!-- fin .formulario -->
+        </div><!-- fin .seccion -->
+
+
+        <!-- =====================================================
+             TABLA DE VACANTES REGISTRADAS
+             Las filas se generan dinámicamente con vacantes.js
+             ===================================================== -->
+        <div class="seccion">
+            <h2>Vacantes Registradas</h2>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cargo</th>
+                            <th>Departamento</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Fecha Registro</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-vacantes">
+                        <!--
+                            Este <tbody> se llena automáticamente con JavaScript.
+                            La función actualizarTablaVacantes() en vacantes.js
+                            lee el localStorage y crea las filas <tr>.
+                        -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>CESDE &copy; 2024 &mdash; Sistema de Selección RRHH</p>
+    </footer>
+
+    <!--
+        IMPORTANTE: El orden de los <script> importa.
+        1. almacenamiento.js → debe ir primero (define las funciones base)
+        2. vacantes.js       → usa las funciones del archivo anterior
+    -->
+    <script src="js/almacenamiento.js"></script>
+    <script src="js/vacantes.js"></script>
+
+</body>
+</html>
