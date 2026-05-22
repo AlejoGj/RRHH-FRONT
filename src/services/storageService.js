@@ -11,7 +11,7 @@ const STORAGE_KEYS = {
 /**
  * Genera un ID único basado en timestamp
  */
-export const generarId = () => Date.now();
+export const generarId = () => Date.now() + Math.floor(Math.random() * 1000);
 
 /**
  * ASPIRANTES - Obtener todos los aspirantes
