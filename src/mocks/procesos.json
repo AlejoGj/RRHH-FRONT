@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "id_vacante": 1,
+    "id_aspirante": 1,
+    "nombre_vacante": "Desarrollador Frontend",
+    "nombre_aspirante": "Juan Pérez",
+    "etapa": "convocatoria",
+    "observaciones": null,
+    "fecha_creacion": "2026-05-05"
+  },
+  {
+    "id": 2,
+    "id_vacante": 2,
+    "id_aspirante": 2,
+    "nombre_vacante": "Analista QA",
+    "nombre_aspirante": "María García",
+    "etapa": "entrevista",
+    "observaciones": "Buen perfil técnico",
+    "fecha_creacion": "2026-05-10"
+  }
+]

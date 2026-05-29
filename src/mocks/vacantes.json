@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "titulo": "Desarrollador Frontend",
+    "departamento": "Ingeniería",
+    "descripcion": "Desarrollo de interfaces en React",
+    "salario": "4500",
+    "estado": "activa",
+    "fecha": "2026-05-01"
+  },
+  {
+    "id": 2,
+    "titulo": "Analista QA",
+    "departamento": "Calidad",
+    "descripcion": "Pruebas automatizadas",
+    "salario": "3500",
+    "estado": "activa",
+    "fecha": "2026-04-20"
+  }
+]

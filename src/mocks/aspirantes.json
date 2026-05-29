@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "email": "juan.perez@example.com",
+    "telefono": "555-1234",
+    "perfil": "Fullstack",
+    "fecha": "2026-03-15",
+    "estado": "pendiente"
+  },
+  {
+    "id": 2,
+    "nombre": "María",
+    "apellido": "García",
+    "email": "maria.garcia@example.com",
+    "telefono": "555-5678",
+    "perfil": "QA",
+    "fecha": "2026-02-10",
+    "estado": "pendiente"
+  }
+]

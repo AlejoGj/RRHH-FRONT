@@ -16,8 +16,8 @@ export const authService = {
       password,
     });
 
-    if (response.success && response.data.token) {
-      sessionStorage.setItem('authToken', response.data.token);
+    // La API nueva no usa JWT; almacenar sólo información de usuario para sesión local
+    if (response && response.success && response.data && response.data.user) {
       sessionStorage.setItem('userName', response.data.user.nombre);
       sessionStorage.setItem('userId', response.data.user.id);
     }
@@ -26,21 +26,32 @@ export const authService = {
   },
 
   async getProfile() {
-    return apiClient.get('/auth/profile');
+    try {
+      // Intentar obtener perfil desde API; si falla, devolver datos locales si existen
+      const resp = await apiClient.get('/auth/profile');
+      return resp;
+    } catch (e) {
+      const userId = sessionStorage.getItem('userId');
+      const userName = sessionStorage.getItem('userName');
+      if (userId) {
+        return { success: true, data: { id: userId, nombre: userName, email: null } };
+      }
+      throw e;
+    }
   },
 
   logout() {
-    sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('userName');
     sessionStorage.removeItem('userId');
   },
 
   isAuthenticated() {
-    return !!sessionStorage.getItem('authToken');
+    return !!sessionStorage.getItem('userId');
   },
 
   getToken() {
-    return sessionStorage.getItem('authToken');
+    // Deprecated: JWT no usado por defecto
+    return null;
   },
 
   getUserName() {
