@@ -11,9 +11,11 @@ export default function ProcesosTable({ procesos, setProcesos, onProcesosChange 
     const etapas = ["convocatoria", "preseleccion", "entrevista", "prueba", "seleccionado", "rechazado"];
 
     const procesosFiltrados = procesos.filter(p => {
+        const vacante = (p.nombreVacante ?? p.nombre_vacante ?? '').toLowerCase();
+        const aspirante = (p.nombreAspirante ?? p.nombre_aspirante ?? '').toLowerCase();
         const coincideBusqueda =
-            p.nombre_vacante.toLowerCase().includes(busqueda.toLowerCase()) ||
-            p.nombre_aspirante.toLowerCase().includes(busqueda.toLowerCase());
+            vacante.includes(busqueda.toLowerCase()) ||
+            aspirante.includes(busqueda.toLowerCase());
 
         const coincideEtapa = !filtroEtapa || p.etapa === filtroEtapa;
 
@@ -45,7 +47,7 @@ export default function ProcesosTable({ procesos, setProcesos, onProcesosChange 
                 setEliminando(id);
                 const response = await procesosService.delete(id);
 
-                if (response.success) {
+                if (response === null || response?.success) {
                     const listaFiltrada = procesos.filter(p => p.id !== id);
                     setProcesos(listaFiltrada);
                     if (onProcesosChange) onProcesosChange();
@@ -125,8 +127,8 @@ export default function ProcesosTable({ procesos, setProcesos, onProcesosChange 
                         ) : (
                             procesosFiltrados.map(p => (
                                 <tr key={p.id}>
-                                    <td>{p.nombre_vacante}</td>
-                                    <td>{p.nombre_aspirante}</td>
+                                    <td>{p.nombreVacante ?? p.nombre_vacante ?? '—'}</td>
+                                    <td>{p.nombreAspirante ?? p.nombre_aspirante ?? '—'}</td>
                                     <td>
                                         <span className={`badge ${obtenerClaseBadge(p.etapa)}`}>
                                             {p.etapa}
@@ -184,8 +186,8 @@ export default function ProcesosTable({ procesos, setProcesos, onProcesosChange 
                                     </button>
                                     <h3>Detalles del Proceso</h3>
                                     <div className="info-detalle">
-                                        <p><strong>Vacante:</strong> {p.nombre_vacante}</p>
-                                        <p><strong>Aspirante:</strong> {p.nombre_aspirante}</p>
+                                        <p><strong>Vacante:</strong> {p.nombreVacante ?? p.nombre_vacante ?? '—'}</p>
+                                        <p><strong>Aspirante:</strong> {p.nombreAspirante ?? p.nombre_aspirante ?? '—'}</p>
                                         <p><strong>Etapa Actual:</strong> <span className={`badge ${obtenerClaseBadge(p.etapa)}`}>{p.etapa}</span></p>
                                         <p><strong>Fecha de Registro:</strong> {p.fecha_creacion}</p>
                                         <p><strong>Observaciones:</strong></p>

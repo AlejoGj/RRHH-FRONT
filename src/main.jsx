@@ -6,8 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { apiClient } from './services/apiClient.js';
 
-// Configurar uso de mocks locales durante la migración (cambiar cuando la API Spring esté lista)
-apiClient.configure({ fallbackBaseUrl: '/src/mocks', useAuth: false });
+// El cliente usa `import.meta.env.VITE_API_BASE_URL` por defecto.
+// Para apuntar a Spring: configurar `VITE_API_BASE_URL` en el entorno de Vite.
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
